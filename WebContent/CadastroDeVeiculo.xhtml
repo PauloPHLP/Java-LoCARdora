@@ -1,0 +1,487 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+
+	<ui:define name="title">Cadastro de veículo</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:head>
+
+			<style type="text/css">
+#registration-form {
+	font-family: 'Open Sans Condensed', sans-serif;
+	width: 400px;
+	min-width: 250px;
+	margin: 20px auto;
+	position: relative;
+}
+
+#registration-form .fieldset {
+	background-color: #364351;
+	border-radius: 3px;
+}
+
+#registration-form legend {
+	text-align: center;
+	background: #364351;
+	width: 100%;
+	padding: 30px 0;
+	border-radius: 3px 3px 0 0;
+	color: white;
+	font-size: 2em;
+}
+
+.fieldset form {
+	border: 1px solid #2f2f2f;
+	margin: 0 auto;
+	display: block;
+	width: 100%;
+	padding: 30px 20px;
+	box-sizing: border-box;
+	border-radius: 0 0 3px 3px;
+}
+
+.placeholder #registration-form label {
+	display: none;
+}
+
+.no-placeholder #registration-form label {
+	margin-left: 5px;
+	position: relative;
+	display: block;
+	color: grey;
+	text-shadow: 0 1px white;
+	font-weight: bold;
+}
+/* all */
+::-webkit-input-placeholder {
+	text-shadow: 1px 1px 1px white;
+	font-weight: bold;
+}
+
+::-moz-placeholder {
+	text-shadow: 0 1px 1px white;
+	font-weight: bold;
+} /* firefox 19+ */
+:-ms-input-placeholder {
+	text-shadow: 0 1px 1px white;
+	font-weight: bold;
+} /* ie */
+#registration-form input[type=text] {
+	padding: 15px 20px;
+	border-radius: 1px;
+	margin: 5px auto;
+	background-color: #f7f7f7;
+	border: 1px solid silver;
+	-webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2), 0 1px
+		rgba(255, 255, 255, .8);
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: background-color .5s ease;
+	-moz-transition: background-color .5s ease;
+	-o-transition: background-color .5s ease;
+	-ms-transition: background-color .5s ease;
+	transition: background-color .5s ease;
+}
+
+.no-placeholder #registration-form input[type=text] {
+	padding: 10px 20px;
+}
+
+#registration-form input[type=text]:active, .placeholder #registration-form input[type=text]:focus
+	{
+	outline: none;
+	border-color: silver;
+	background-color: white;
+}
+
+#registration-form input[type=submit] {
+	font-family: 'Open Sans Condensed', sans-serif;
+	text-transform: uppercase;
+	outline: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #364351;
+	padding: 10px;
+	color: white;
+	border: 1px solid #364351;
+	border-radius: 3px;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-top: 5px;
+	cursor: pointer;
+	position: relative;
+	top: 0;
+}
+
+#registration-form input[type=submit]:hover {
+	background-color: #ff7d00;
+}
+
+#registration-form input[type=submit]:active {
+	background: #ff7d00;
+}
+
+.parsley-error-list {
+	background-color: #C34343;
+	padding: 5px 11px;
+	margin: 0;
+	list-style: none;
+	border-radius: 0 0 3px 3px;
+	margin-top: -5px;
+	margin-bottom: 5px;
+	color: white;
+	border: 1px solid #870d0d;
+	border-top: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+	top: -1px;
+	text-shadow: 0px 1px 1px #460909;
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.parsley-error {
+	border-color: #870d0d !important;
+	border-bottom: none;
+}
+
+#registration-form select {
+	width: 100%;
+	padding: 5px;
+}
+
+::-moz-focus-inner {
+	border: 0;
+}
+</style>
+
+		</h:head>
+
+		<h:body>
+
+			<div class="jumbotron jumbotron-fluid"
+				style="background-color: #000000">
+				<div class="container">
+					<h1 class="display-3" align="center" style="color: #868e96">
+						Cadastrar um veículo à frota</h1>
+				</div>
+			</div>
+
+			<div id="registration-form">
+				<div class='fieldset'>
+					<legend>
+						<img src="img/Icones/Veiculos.png"
+							style="width: 100px; height: 100px;"></img>
+					</legend>
+					<form jsf:id="form" method="post" enctype="multipart/form-data">
+
+						<h:messages></h:messages>
+
+						<div class='form-group'>
+							<label></label><h6 align="center" style="color: #868e96">Imagem do veículo</h6><input style="width: 100%; align: center" type="file"
+								jsf:id="imagem" jsf:value="#{mBeanCadastroVeiculo.imagem}"
+								class="form-control"/>
+						</div>
+					
+							<div class='form-group'>
+							<h6 align="center" style="color: #868e96">Tipo</h6>
+							<h:selectOneMenu required="true"
+								value="#{mBeanCadastroVeiculo.tipo}"
+								style="border-radius:4px; height: 40px;"
+								styleClass="form-control">
+						
+								<f:selectItem itemValue="Tipo do veículo"></f:selectItem>
+								<f:selectItem itemValue="Carro"></f:selectItem>
+								<f:selectItem itemValue="Moto"></f:selectItem>
+
+							</h:selectOneMenu>
+
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label><h6 align="center" style="color: #868e96">Modelo</h6><input
+								style="border-radius: 4px; height: 40px" jsf:id="modelo"
+								jsf:value="#{mBeanCadastroVeiculo.modelo}" type="text"
+								name="modelo" class="form-control" placeholder="Modelo"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label><h6 align="center" style="color: #868e96">Fabricante</h6><input
+								style="border-radius: 4px; height: 40px" jsf:id="fabricante"
+								jsf:value="#{mBeanCadastroVeiculo.fabricante}" type="text"
+								name="fabricante" class="form-control" placeholder="Fabricante"
+								required="required" />
+						</div>
+						
+						<div class='form-group'>
+							<label style="color: #868e96;"></label><h6 align="center" style="color: #868e96">Data de lançamento</h6><input
+								style="width: 100%; border-radius: 4px; height: 40px" type="date"
+								jsf:id="anoLancamento" name="anoLancamento" class="form-control"
+								placeholder="Ano de lançamento - 0000"
+								jsf:value="#{mBeanCadastroVeiculo.anoLancamento}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT-3"></f:convertDateTime>
+							</input>
+						</div>
+						
+						<div class='form-group'>
+						
+						<h6 align="center" style="color: #868e96">Carroceria</h6>
+						<h:selectOneMenu required="true"
+							value="#{mBeanCadastroVeiculo.carroceria}"
+							style="border-radius:4px; height: 40px" styleClass="form-control">
+							
+							<f:selectItem itemValue="Carroceria"></f:selectItem>
+							<f:selectItem itemValue="Hatchback"></f:selectItem>
+							<f:selectItem itemValue="Sedan"></f:selectItem>
+							<f:selectItem itemValue="Fastback"></f:selectItem>
+							<f:selectItem itemValue="Perua"></f:selectItem>
+							<f:selectItem itemValue="Roadster"></f:selectItem>
+							<f:selectItem itemValue="Cupê"></f:selectItem>
+							<f:selectItem itemValue="SUV"></f:selectItem>
+							<f:selectItem itemValue="Minivan"></f:selectItem>
+							<f:selectItem itemValue="Picape"></f:selectItem>
+							<f:selectItem itemValue="Tracker"></f:selectItem>
+							<f:selectItem itemValue="Bobber"></f:selectItem>
+							<f:selectItem itemValue="Café Racer"></f:selectItem>
+							<f:selectItem itemValue="Chopper"></f:selectItem>
+							<f:selectItem itemValue="Custom"></f:selectItem>
+							<f:selectItem itemValue="Esportiva"></f:selectItem>
+							<f:selectItem itemValue="Super-Esportiva"></f:selectItem>
+							<f:selectItem itemValue="Naked"></f:selectItem>
+							<f:selectItem itemValue="Off-Road"></f:selectItem>
+							<f:selectItem itemValue="Scooter"></f:selectItem>
+							<f:selectItem itemValue="StreetFighter"></f:selectItem>
+							<f:selectItem itemValue="Supermotard"></f:selectItem>
+
+						</h:selectOneMenu>
+
+						</div>
+						
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Cilindradas (Cm³)</h6><input
+								style="border-radius: 4px; height: 40px" jsf:id="cilindradas"
+								jsf:value="#{mBeanCadastroVeiculo.cilindradas}" type="text"
+								name="cilindradas" class="form-control"
+								placeholder="Cilindradas" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Potência (Cv)</h6><input jsf:id="potencia"
+								style="border-radius: 4px; height: 40px"
+								jsf:value="#{mBeanCadastroVeiculo.potencia}" type="text"
+								name="potencia" class="form-control" placeholder="Potência (cv)"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Peso/Potência (Kg/cv)</h6><input
+								style="border-radius: 4px; height: 40px" jsf:id="pesoPotencia"
+								jsf:value="#{mBeanCadastroVeiculo.pesoPotencia}" type="text"
+								name="pesoPotencia" class="form-control"
+								placeholder="Relação peso/potência" required="required" />
+						</div>
+
+						<div class='form-group'>
+							
+							<h6 align="center" style="color: #868e96">Tração</h6>
+							<h:selectOneMenu required="true"
+								value="#{mBeanCadastroVeiculo.tracao}"
+								style="border-radius:4px; height: 40px"
+								styleClass="form-control">
+								
+								<f:selectItem itemValue="Tração"></f:selectItem>
+								<f:selectItem itemValue="Integral"></f:selectItem>
+								<f:selectItem itemValue="Dianteira"></f:selectItem>
+								<f:selectItem itemValue="Traseira"></f:selectItem>
+
+							</h:selectOneMenu>
+
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Torque (Kgfm)</h6><input jsf:id="torque"
+								style="border-radius: 4px; height: 40px"
+								jsf:value="#{mBeanCadastroVeiculo.torque}" type="text"
+								name="torque" class="form-control"
+								placeholder="Torque (kg/kgfm)" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"> </label><h6 align="center" style="color: #868e96">Aceleração (0-100 Km/h)</h6><input
+								style="border-radius: 4px; height: 40px" jsf:id="aceleracao"
+								jsf:value="#{mBeanCadastroVeiculo.aceleracao}" type="text"
+								name="aceleracao" class="form-control"
+								placeholder="Aceleração (0 - 100 km/h)" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Velocidade máxima (Km/h)</h6><input
+								style="border-radius: 4px; height: 40px"
+								jsf:id="velocidadeMaxima"
+								jsf:value="#{mBeanCadastroVeiculo.velocidadeMaxima}" type="text"
+								name="velocidadeMaxima" class="form-control"
+								placeholder="Velocidade máxima (km/h)" required="required" />
+						</div>
+
+						<div class='form-group'>
+							
+							<h6 align="center" style="color: #868e96">Câmbio</h6>
+							<h:selectOneMenu required="true"
+								value="#{mBeanCadastroVeiculo.cambio}"
+								style="border-radius:4px; height: 40px"
+								styleClass="form-control">
+								
+								<f:selectItem itemValue="Câmbio"></f:selectItem>
+								<f:selectItem itemValue="Manual"></f:selectItem>
+								<f:selectItem itemValue="Automático"></f:selectItem>
+								<f:selectItem itemValue="Automático com dupla embreagem"></f:selectItem>
+								<f:selectItem itemValue="CVT"></f:selectItem>
+
+							</h:selectOneMenu>
+
+						</div>
+
+						<div class='form-group'>
+							
+							<h6 align="center" style="color: #868e96">Número de marchas</h6>
+							<h:selectOneMenu required="true"
+								value="#{mBeanCadastroVeiculo.numeroMarchas}"
+								style="border-radius:4px; height: 40px"
+								styleClass="form-control">
+									
+								<f:selectItem itemValue="Número de marchas"></f:selectItem>			
+								<f:selectItem itemValue="2"></f:selectItem>
+								<f:selectItem itemValue="4"></f:selectItem>
+								<f:selectItem itemValue="5"></f:selectItem>
+								<f:selectItem itemValue="6"></f:selectItem>
+								<f:selectItem itemValue="7"></f:selectItem>
+								<f:selectItem itemValue="8"></f:selectItem>
+								<f:selectItem itemValue="10"></f:selectItem>
+
+							</h:selectOneMenu>
+
+						</div>
+						
+						<div class='form-group'>
+						
+						<h6 align="center" style="color: #868e96">Combustível</h6>
+						<h:selectOneMenu required="true"
+							value="#{mBeanCadastroVeiculo.combustivel}"
+							style="border-radius:4px; height: 40px" styleClass="form-control">
+							
+							<f:selectItem itemValue="Combustível"></f:selectItem>			
+							<f:selectItem itemValue="Gasolina"></f:selectItem>
+							<f:selectItem itemValue="Etanol"></f:selectItem>
+							<f:selectItem itemValue="Biodiesel"></f:selectItem>
+							<f:selectItem itemValue="Óleo diesel"></f:selectItem>
+							<f:selectItem itemValue="Gás natural"></f:selectItem>
+							<f:selectItem itemValue="Elétrico"></f:selectItem>
+							<f:selectItem itemValue="Híbrido"></f:selectItem>
+
+						</h:selectOneMenu>
+						
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Consumo (Km/L)</h6><input jsf:id="consumo"
+								style="border-radius: 4px; height: 40px"
+								jsf:value="#{mBeanCadastroVeiculo.consumo}" type="text"
+								name="consumo" class="form-control" placeholder="Consumo (km/l)"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Peso (Kg)</h6><input jsf:id="peso"
+								style="border-radius: 4px; height: 40px"
+								jsf:value="#{mBeanCadastroVeiculo.peso}" type="text" name="peso"
+								class="form-control" placeholder="Peso (kg)" required="required" />
+						</div>
+
+						<div class='form-group'>
+							
+							<h6 align="center" style="color: #868e96">Ocupantes</h6>
+							<h:selectOneMenu required="true"
+								value="#{mBeanCadastroVeiculo.ocupantes}"
+								style="border-radius:4px; height: 40px"
+								styleClass="form-control">
+								
+								<f:selectItem itemValue="Ocupantes"></f:selectItem>	
+								<f:selectItem itemValue="1"></f:selectItem>
+								<f:selectItem itemValue="2"></f:selectItem>
+								<f:selectItem itemValue="4"></f:selectItem>
+								<f:selectItem itemValue="5"></f:selectItem>
+								<f:selectItem itemValue="6"></f:selectItem>
+								<f:selectItem itemValue="7"></f:selectItem>
+								<f:selectItem itemValue="8"></f:selectItem>
+
+							</h:selectOneMenu>
+
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label><h6 align="center" style="color: #868e96">Preço (R$)</h6><input type="text"
+								style="border-radius: 4px; height: 40px" jsf:id="preco"
+								id="preco" class="form-control"
+								jsf:value="#{mBeanCadastroVeiculo.preco}"
+								placeholder="Preço do veículo" required="required">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2"></f:convertNumber>
+							</input>
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"> </label><h6 align="center" style="color: #868e96">Valor por hora (R$)</h6><input jsf:id="valorHora"
+								style="border-radius: 4px; height: 40px"
+								jsf:value="#{mBeanCadastroVeiculo.valorHora}" type="text"
+								id="valorHora" class="form-control"
+								placeholder="Valor por hora de locação" required="required">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2"></f:convertNumber>
+							</input>
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label><h6 align="center" style="color: #868e96">Placa</h6><input jsf:id="placa"
+								style="border-radius: 4px; height: 40px"
+								jsf:value="#{mBeanCadastroVeiculo.placa}" type="text"
+								id="placa" class="form-control" placeholder="Placa"
+								required="required" />
+						</div>
+						<div class='form-group'>
+							<label style="color: #868e96; align: center"></label><h6 align="center" style="color: #868e96">Descrição</h6>
+							<h:inputTextarea value="#{mBeanCadastroVeiculo.descricao}"
+								style="width: 100%; resize: none;"
+								placeholder="Descrição do veículo" name="descricao" rows="5"
+								cols="100" class="form-control" required="required"></h:inputTextarea>
+						</div>
+
+						<input type="submit" value="Cadastrar veículo" jsf:id="btnSalvar"
+							jsf:action="#{mBeanCadastroVeiculo.salvar}"
+							class="btn btn-primary"></input>
+
+					</form>
+				</div>
+			</div>
+
+		</h:body>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,171 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<title><ui:insert name="title"></ui:insert></title>
+
+	<link rel="icon" href="img/Logos/LoCARdora - logo menor.png"
+		type="image/x-icon" />
+
+	<link href="css/bootstrap.css" rel="stylesheet" />
+
+	<style type="text/css">
+body {
+	background-color: #000000;
+}
+</style>
+
+</h:head>
+
+<h:body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+		style="width: 1349px">
+		<a class="navbar-brand" href="PaginaInicial.jsf"><img
+			style="width: 130px; height: 100px;"
+			src="img/Logos/LoCARdora - logo menor.png"></img></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<span class="sr-only">(current)</span>
+				<li class="nav-item"><a class="nav-link"
+					href="PaginaInicial.jsf#vitrine"><img
+						src="img/Icones/Carros.png" style="width: 30px; height: 30px;"></img>
+						Vitrine</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="PaginaInicial.jsf#quemSomos"><img
+						src="img/Icones/Quem somos.png" style="width: 30px; height: 30px;"></img>
+						Quem somos</a></li>
+				<li class="nav-item"><a class="nav-link" href="FaleConosco.jsf"><img
+						src="img/Icones/Fale conosco.png"
+						style="width: 30px; height: 30px;"></img> Fale conosco</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="http://example.com"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"><img
+						src="img/Icones/Cadastros.png" style="width: 30px; height: 30px;"></img>
+						Cadastrar</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="CadastroDeCliente.jsf"><img
+							src="img/Icones/Clientes.png" style="width: 30px; height: 30px;"></img>
+							Cadastrar cliente</a> <a class="dropdown-item"
+							href="CadastroDeFuncionario.jsf"><img
+							src="img/Icones/Funcionarios.png"
+							style="width: 30px; height: 30px;"></img> Cadastrar funcionário</a> <a
+							class="dropdown-item" href="CadastroDeVeiculo.jsf"><img
+							src="img/Icones/Veiculos.png" style="width: 30px; height: 30px;"></img>
+							Cadastrar veículo à frota</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="http://example.com"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"><img
+						src="img/Icones/Detalhes.png" style="width: 30px; height: 30px;"></img>
+						Editar cadastros</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="DetalhesCadastroClientes.jsf"><img
+							src="img/Icones/Clientes.png" style="width: 30px; height: 30px;"></img>
+							Clientes</a> <a class="dropdown-item"
+							href="DetalhesCadastroFuncionarios.jsf"><img
+							src="img/Icones/Funcionarios.png"
+							style="width: 30px; height: 30px;"></img> Funcionário</a> <a
+							class="dropdown-item" href="DetalhesCadastroVeiculos.jsf"><img
+							src="img/Icones/Veiculos.png" style="width: 30px; height: 30px;"></img>
+							Veículos</a>
+					</div></li>
+				<li class="nav-item"><a class="nav-link"
+					href="AlugueUmVeiculo.jsf"><img
+						src="img/Icones/Alugue um veículo.png"
+						style="width: 30px; height: 30px;"></img> Alugue um veículo</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="CarrinhoDeLocacao.jsf"><img
+						src="img/Icones/Carrinho de compras.png"
+						style="width: 30px; height: 30px;"></img> Carrinho</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="http://example.com"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"><img
+						src="img/Icones/Login.png" style="width: 30px; height: 30px;"></img>
+						Login</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="LoginCliente.jsf"><img
+							src="img/Icones/Clientes.png" style="width: 30px; height: 30px;"></img>
+							Login cliente</a> <a class="dropdown-item"
+							href="LoginFuncionario.jsf"><img
+							src="img/Icones/Funcionarios.png"
+							style="width: 30px; height: 30px;"></img> Login funcionário</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<ui:insert name="conteudo"></ui:insert>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/jquery.mask.min.js"></script>
+
+	<ui:insert name="script">
+
+		<script>
+			$('#rg').mask('00.000.000-0');
+		</script>
+
+		<script>
+			$('#cnh').mask('00000000000');
+		</script>
+
+		<script>
+			$('#cep').mask('00000-000');
+		</script>
+
+		<script>
+			$('#cpf').mask('000.000.000-00');
+		</script>
+
+		<script>
+			$('#telefone').mask("(00) 00000-0000");
+		</script>
+
+		<script>
+			$('#placa').mask("AAA-0000");
+		</script>
+
+		<script>
+			$('#preco').mask("999.999.999,99");
+			$('#valorHora').mask("999.999,99");
+		</script>
+
+		<script>
+			function placeholderIsSupported() {
+				test = document.createElement('input');
+				return ('placeholder' in test);
+			}
+
+			$(document)
+					.ready(
+							function() {
+								placeholderSupport = placeholderIsSupported() ? 'placeholder'
+										: 'no-placeholder';
+								$('html').addClass(placeholderSupport);
+							});
+		</script>
+
+	</ui:insert>
+
+</h:body>
+
+</html>

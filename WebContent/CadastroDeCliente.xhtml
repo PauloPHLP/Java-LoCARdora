@@ -1,0 +1,379 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+
+	<ui:define name="title">Cadastros</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:head>
+
+			<style type="text/css">
+#registration-form {
+	font-family: 'Open Sans Condensed', sans-serif;
+	width: 400px;
+	min-width: 250px;
+	margin: 20px auto;
+	position: relative;
+}
+
+#registration-form .fieldset {
+	background-color: #364351;
+	border-radius: 3px;
+}
+
+#registration-form legend {
+	text-align: center;
+	background: #364351;
+	width: 100%;
+	padding: 30px 0;
+	border-radius: 3px 3px 0 0;
+	color: white;
+	font-size: 2em;
+}
+
+.fieldset form {
+	border: 1px solid #2f2f2f;
+	margin: 0 auto;
+	display: block;
+	width: 100%;
+	padding: 30px 20px;
+	box-sizing: border-box;
+	border-radius: 0 0 3px 3px;
+}
+
+.placeholder #registration-form label {
+	display: none;
+}
+
+.no-placeholder #registration-form label {
+	margin-left: 5px;
+	position: relative;
+	display: block;
+	color: grey;
+	text-shadow: 0 1px white;
+	font-weight: bold;
+}
+/* all */
+::-webkit-input-placeholder {
+	text-shadow: 1px 1px 1px white;
+	font-weight: bold;
+}
+
+::-moz-placeholder {
+	text-shadow: 0 1px 1px white;
+	font-weight: bold;
+} /* firefox 19+ */
+:-ms-input-placeholder {
+	text-shadow: 0 1px 1px white;
+	font-weight: bold;
+} /* ie */
+#registration-form input[type=text] {
+	padding: 15px 20px;
+	border-radius: 1px;
+	margin: 5px auto;
+	background-color: #f7f7f7;
+	border: 1px solid silver;
+	-webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2), 0 1px
+		rgba(255, 255, 255, .8);
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: background-color .5s ease;
+	-moz-transition: background-color .5s ease;
+	-o-transition: background-color .5s ease;
+	-ms-transition: background-color .5s ease;
+	transition: background-color .5s ease;
+}
+
+.no-placeholder #registration-form input[type=text] {
+	padding: 10px 20px;
+}
+
+#registration-form input[type=text]:active, .placeholder #registration-form input[type=text]:focus
+	{
+	outline: none;
+	border-color: silver;
+	background-color: white;
+}
+
+#registration-form input[type=submit] {
+	font-family: 'Open Sans Condensed', sans-serif;
+	text-transform: uppercase;
+	outline: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #364351;
+	padding: 10px;
+	color: white;
+	border: 1px solid #364351;
+	border-radius: 3px;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-top: 5px;
+	cursor: pointer;
+	position: relative;
+	top: 0;
+}
+
+#registration-form input[type=submit]:hover {
+	background-color: #ff7d00;
+}
+
+#registration-form input[type=submit]:active {
+	background: #ff7d00;
+}
+
+.parsley-error-list {
+	background-color: #C34343;
+	padding: 5px 11px;
+	margin: 0;
+	list-style: none;
+	border-radius: 0 0 3px 3px;
+	margin-top: -5px;
+	margin-bottom: 5px;
+	color: white;
+	border: 1px solid #870d0d;
+	border-top: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+	top: -1px;
+	text-shadow: 0px 1px 1px #460909;
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.parsley-error {
+	border-color: #870d0d !important;
+	border-bottom: none;
+}
+
+#registration-form select {
+	width: 100%;
+	padding: 5px;
+}
+
+::-moz-focus-inner {
+	border: 0;
+}
+</style>
+
+		</h:head>
+
+		<h:body>
+
+			<div class="jumbotron jumbotron-fluid"
+				style="background-color: #000000">
+				<div class="container">
+					<h1 class="display-3" align="center" style="color: #868e96">
+						Cadastrar um cliente</h1>
+				</div>
+			</div>
+
+			<div id="registration-form">
+				<div class='fieldset'>
+					<legend>
+						<img src="img/Icones/Clientes.png"
+							style="width: 100px; height: 100px;"></img>
+					</legend>
+					<form jsf:id="form" method="post" enctype="multipart/form-data" id="formulario">
+
+						<h:messages></h:messages>
+
+						<div class='form-group'>
+							<label></label>
+							<h6 align="center" style="color: #868e96">Foto de perfil</h6>
+							<input style="width: 100%; align: center" type="file"
+								jsf:id="imagem" jsf:value="#{mBeanCadastroCliente.imagem}"
+								class="form-control" />
+						</div>
+
+						<div class='form-group'>
+							<h6 align="center" style="color: #868e96">Tipo do cliente</h6>
+							<h:selectOneMenu required="true"
+								value="#{mBeanCadastroCliente.tipo}"
+								style="border-radius:4px; height: 40px;"
+								styleClass="form-control">
+
+								<f:selectItem itemValue="Tipo do cliente"></f:selectItem>
+								<f:selectItem itemValue="Físico"></f:selectItem>
+								<f:selectItem itemValue="Jurídico"></f:selectItem>
+
+							</h:selectOneMenu>
+
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label>
+							<h6 align="center" style="color: #868e96">Nome</h6>
+							<input style="border-radius: 4px; height: 40px" jsf:id="nome"
+								jsf:value="#{mBeanCadastroCliente.nome}" type="text" name="nome"
+								class="form-control" placeholder="Nome" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label>
+							<h6 align="center" style="color: #868e96">E-mail</h6>
+							<input style="border-radius: 4px; height: 40px; width: 100%"
+								jsf:id="email" jsf:value="#{mBeanCadastroCliente.email}"
+								type="email" name="email" class="form-control"
+								placeholder="E-mail" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label>
+							<h6 align="center" style="color: #868e96">Senha</h6>
+							<input id="senha1" style="border-radius: 4px; height: 40px; width: 100%"
+								jsf:id="senha" jsf:value="#{mBeanCadastroCliente.senha}"
+								type="password" name="senha1" class="form-control"
+								placeholder="Senha" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label>
+							<h6 align="center" style="color: #868e96">Confirmar senha</h6>
+							<input id="senha2" style="border-radius: 4px; height: 40px; width: 100%"
+								jsf:id="confirmarSenha"
+								jsf:value="#{mBeanCadastroCliente.confirmarSenha}"
+								type="password" name="senha2" class="form-control"
+								placeholder="Confirmar senha" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96;"></label>
+							<h6 align="center" style="color: #868e96">Data de nascimento</h6>
+							<input style="width: 100%; border-radius: 4px; height: 40px"
+								type="date" jsf:id="dataNascimento" name="dataNascimento"
+								class="form-control" placeholder="Data de nascimento"
+								jsf:value="#{mBeanCadastroCliente.dataNascimento}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT-3"></f:convertDateTime>
+							</input>
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">CPF/CNPJ</h6>
+							<input style="border-radius: 4px; height: 40px" jsf:id="cpfCnpj"
+								jsf:value="#{mBeanCadastroCliente.cpfCnpj}" type="text"
+								name="cpfCnpj" class="form-control" placeholder="CPF/CNPJ"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">RG</h6>
+							<input id="rg" style="border-radius: 4px; height: 40px"
+								jsf:id="rg" jsf:value="#{mBeanCadastroCliente.rg}" type="text"
+								name="rg" class="form-control" placeholder="RG"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">CNH</h6>
+							<input id="cnh" style="border-radius: 4px; height: 40px"
+								jsf:id="cnh" jsf:value="#{mBeanCadastroCliente.cnh}" type="text"
+								name="cnh" class="form-control" placeholder="CNH"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">Estado</h6>
+							<input style="border-radius: 4px; height: 40px" jsf:id="estado"
+								jsf:value="#{mBeanCadastroCliente.estado}" type="text"
+								name="estado" class="form-control" placeholder="Estado"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">Cidade</h6>
+							<input style="border-radius: 4px; height: 40px" jsf:id="cidade"
+								jsf:value="#{mBeanCadastroCliente.cidade}" type="text"
+								name="cidade" class="form-control" placeholder="Cidade"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">Bairro</h6>
+							<input style="border-radius: 4px; height: 40px" jsf:id="bairro"
+								jsf:value="#{mBeanCadastroCliente.bairro}" type="text"
+								name="bairro" class="form-control" placeholder="Bairro"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">CEP</h6>
+							<input id="cep" style="border-radius: 4px; height: 40px"
+								jsf:id="cep" jsf:value="#{mBeanCadastroCliente.cep}" type="text"
+								name="cep" class="form-control" placeholder="CEP"
+								required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">Rua</h6>
+							<input style="border-radius: 4px; height: 40px" jsf:id="rua"
+								jsf:value="#{mBeanCadastroCliente.rua}" type="text" name="rua"
+								class="form-control" placeholder="Rua" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">Número da casa</h6>
+							<input style="border-radius: 4px; height: 40px"
+								jsf:id="numeroCasa"
+								jsf:value="#{mBeanCadastroCliente.numeroCasa}" type="text"
+								name="numeroCasa" class="form-control"
+								placeholder="Número da casa" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96"></label>
+							<h6 align="center" style="color: #868e96">Telefone</h6>
+							<input id="telefone" style="border-radius: 4px; height: 40px"
+								jsf:id="telefone" jsf:value="#{mBeanCadastroCliente.telefone}"
+								type="text" name="telefone" class="form-control"
+								placeholder="Telefone" required="required" />
+						</div>
+
+						<div class='form-group'>
+							<label style="color: #868e96; align: center"></label>
+							<h6 align="center" style="color: #868e96">Observações</h6>
+							<h:inputTextarea value="#{mBeanCadastroCliente.observacoes}"
+								style="width: 100%; resize: none;"
+								placeholder="Observações do cliente" name="descricao" rows="5"
+								cols="100" class="form-control" required="required"></h:inputTextarea>
+						</div>
+
+						<input type="submit" value="Cadastrar cliente" jsf:id="btnSalvar"
+							jsf:action="#{mBeanCadastroCliente.salvar}"
+							class="btn btn-primary"></input>
+
+					</form>
+				</div>
+			</div>
+
+		</h:body>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
